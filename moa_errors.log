@@ -1,0 +1,51 @@
+[14-Jun-2025 03:38:52 Europe/Berlin] Error loading existing recruitment form: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ojtwebportal.recruitment_form' doesn't exist
+[14-Jun-2025 03:38:52 Europe/Berlin] Supervisor found: ID 4
+[14-Jun-2025 03:38:52 Europe/Berlin] Error fetching duty options: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ojtwebportal.nature_of_duties' doesn't exist
+[14-Jun-2025 03:38:55 Europe/Berlin] Error loading existing recruitment form: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ojtwebportal.recruitment_form' doesn't exist
+[14-Jun-2025 03:38:55 Europe/Berlin] Supervisor found: ID 4
+[14-Jun-2025 03:38:55 Europe/Berlin] Error fetching duty options: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ojtwebportal.nature_of_duties' doesn't exist
+[14-Jun-2025 04:33:53 Europe/Berlin] Error loading existing recruitment form: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ojtwebportal.recruitment_form' doesn't exist
+[14-Jun-2025 04:33:53 Europe/Berlin] Supervisor found: ID 4
+[14-Jun-2025 04:33:53 Europe/Berlin] Error fetching duty options: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ojtwebportal.nature_of_duties' doesn't exist
+[14-Jun-2025 04:34:44 Europe/Berlin] Error loading existing recruitment form: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ojtwebportal.recruitment_form' doesn't exist
+[14-Jun-2025 04:34:44 Europe/Berlin] Supervisor found: ID 4
+[14-Jun-2025 04:34:44 Europe/Berlin] POST data: Array
+(
+    [moa-renew-submit] => 1
+    [internship_department] => asdf
+    [supervisor_name] => asdfasdf`
+    [nature_of_duties] => []
+    [modality] => Remote
+    [supervisor_email] => asdfds@gmail.com
+    [agree_terms] => yes
+)
+
+[14-Jun-2025 04:34:44 Europe/Berlin] SESSION data: Array
+(
+    [auth] => 1
+    [auth_user] => Array
+        (
+            [supervisor_id] => 4
+            [unique_id] => 2f69c9845ab75f38684cc9131233b
+            [full_name] => Lean Esguerra
+            [user_type] => supervisor
+            [access_level] => 0
+        )
+
+    [alert] => Success
+    [status-code] => success
+    [current_section] => appointment.php
+    [supervisor_company] => PwC Philippines
+)
+
+[14-Jun-2025 04:34:44 Europe/Berlin] Form submission error: Invalid data format for Nature of Duties.
+[14-Jun-2025 04:34:44 Europe/Berlin] Error fetching duty options: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ojtwebportal.nature_of_duties' doesn't exist
+[14-Jun-2025 04:57:57 Europe/Berlin] Error loading existing recruitment form: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ojtwebportal.recruitment_form' doesn't exist
+[14-Jun-2025 04:57:57 Europe/Berlin] Supervisor found: ID 4
+[14-Jun-2025 04:57:57 Europe/Berlin] Error fetching duty options: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ojtwebportal.nature_of_duties' doesn't exist
+[14-Jun-2025 05:30:32 Europe/Berlin] Error loading existing recruitment form: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ojtwebportal.recruitment_form' doesn't exist
+[14-Jun-2025 05:30:32 Europe/Berlin] Supervisor found: ID 4
+[14-Jun-2025 05:30:32 Europe/Berlin] Error fetching duty options: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ojtwebportal.nature_of_duties' doesn't exist
+[14-Jun-2025 05:32:35 Europe/Berlin] Error loading existing recruitment form: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ojtwebportal.recruitment_form' doesn't exist
+[14-Jun-2025 05:32:35 Europe/Berlin] Supervisor found: ID 4
+[14-Jun-2025 05:32:35 Europe/Berlin] Error fetching duty options: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ojtwebportal.nature_of_duties' doesn't exist
