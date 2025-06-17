@@ -1,0 +1,38 @@
+[2025-06-10 09:04:13] Session data:
+Data: Array
+(
+    [auth] => 1
+    [auth_user] => Array
+        (
+            [student_id] => 19
+            [student_uniqueID] => 67c7fdf389ba74149
+            [student_course] => Diploma in Electronics Engineering Technology (DECET)
+        )
+
+    [alert] => Success
+    [status-code] => success
+)
+
+[2025-06-10 09:04:13] POST data:
+Data: Array
+(
+    [supervisor_id] => 48
+    [content] => hahahaha
+)
+
+[2025-06-10 09:04:13] Processing message
+Data: Array
+(
+    [student_id] => 19
+    [supervisor_id] => 48
+    [content_length] => 8
+)
+
+[2025-06-10 09:04:13] No user_id in session, checking users table
+Data: Array
+(
+    [student_id] => 19
+)
+
+[2025-06-10 09:04:13] User not found, creating new user record
+[2025-06-10 09:04:13] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username' in 'field list'

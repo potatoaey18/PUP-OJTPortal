@@ -2,55 +2,44 @@
 include '../connection/config.php';
 session_start();
 
-if (!isset($_SESSION['auth_user'])) {
-    echo json_encode(['error' => 'Not logged in']);
-    exit();
-}
+//display all errors
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-$senderId = $_SESSION['auth_user']['student_uniqueID'];
-$receiverId = $_POST['receiver_id'] ?? '';
-$uploadDir = 'uploads/images/';
 
-if (!is_dir($uploadDir) && !mkdir($uploadDir, 0755, true)) {
-    echo json_encode(['error' => 'Upload directory creation failed']);
-    exit();
-}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $senderId = $_SESSION['auth_user']['student_uniqueID'];
+        $receiverId = $_POST['receiver_id'];
 
-$files = $_FILES['img_toSEND'] ?? [];
-if (empty($files['name'][0])) {
-    echo json_encode(['error' => 'No images selected']);
-    exit();
-}
+        $uploadDir = 'uploads/images'; // Specify the directory where you want to store the uploaded images
 
-$responses = [];
-foreach (array_keys($files['name']) as $i) {
-    if ($files['error'][$i] !== UPLOAD_ERR_OK) {
-        $responses[] = ['error' => "Upload error for {$files['name'][$i]}"];
-        continue;
-    }
+        // Check for and handle potential errors during file upload
+        if ($_FILES['img_toSEND']['error'] === UPLOAD_ERR_OK) {
+            // Generate a unique filename for the uploaded image
+            $uniqueFilename = uniqid() . '-' . $_FILES['img_toSEND']['name'];
 
-    if ($files['size'][$i] > 5 * 1024 * 1024) { // 5MB limit
-        $responses[] = ['error' => "File {$files['name'][$i]} too large"];
-        continue;
-    }
+            // Define the full path to the saved image file
+            $imagePath = $uploadDir . $uniqueFilename;
 
-    $mime = mime_content_type($files['tmp_name'][$i]);
-    if (!in_array($mime, ['image/jpeg', 'image/png', 'image/gif'])) {
-        $responses[] = ['error' => "Invalid type for {$files['name'][$i]}"];
-        continue;
-    }
+            if (move_uploaded_file($_FILES['img_toSEND']['tmp_name'], $imagePath)) {
+                date_default_timezone_set('Asia/Manila');
+                $date = date('F d, Y');
+                $time = date('g:i A');
 
-    $fileName = uniqid('img_', true) . '.' . pathinfo($files['name'][$i], PATHINFO_EXTENSION);
-    $filePath = $uploadDir . $fileName;
+                    $stmt = $conn->prepare("INSERT INTO chat_system (sender_id, receiver_id, images, date_only, time_only) VALUES (?, ?, ?, ?, ?)");
+                    $stmt->execute([$senderId, $receiverId, $imagePath, $date, $time]);
 
-    if (move_uploaded_file($files['tmp_name'][$i], $filePath)) {
-        $stmt = $conn->prepare("INSERT INTO chat_system (sender_id, receiver_id, messages, images, date_only, time_only) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$senderId, $receiverId, 'Image shared', $filePath, date('Y-m-d'), date('H:i:s')]);
-        $responses[] = ['success' => "Image {$files['name'][$i]} uploaded", 'path' => $filePath];
+                    // Return a success message or any other response
+                    echo "Image uploaded successfully.";
+            } else {
+                echo "Error moving the uploaded file.";
+            }
+        } else {
+            echo "Error during file upload. Error code: " . $_FILES['img_toSEND']['error'];
+        }
     } else {
-        $responses[] = ['error' => "Failed to move {$files['name'][$i]}"];
+        echo "Invalid request or no file uploaded.";
     }
-}
 
-echo json_encode($responses);
+
 ?>

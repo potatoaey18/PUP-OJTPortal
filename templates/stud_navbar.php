@@ -336,11 +336,10 @@
                     <li><a href="stud_notification.php" class="<?php echo ($current_page == 'stud_notification.php') ? 'active' : ''; ?>"><img src="images/notification.png"> Notifications </a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle"><img src="images/message.png"> Messages</a>
-                        <div class="dropdown-content" <?php echo (in_array($current_page, ['stud_message.php', 'chat_supervisor.php', 'chat_faculty.php', 'chat_admin.php'])) ? 'style="display: block;"' : ''; ?>>
-                            <a href="stud_message.php" class="<?php echo ($current_page == 'stud_message.php') ? 'active' : ''; ?>"><img src="images/student.png"> Student</a>
-                            <a href="chat_supervisor.php" class="<?php echo ($current_page == 'chat_supervisor.php') ? 'active' : ''; ?>"><img src="images/faculty.png"> Faculty</a>
-                            <a href="chat_faculty.php" class="<?php echo ($current_page == 'chat_faculty.php') ? 'active' : ''; ?>"><img src="images/supervisor.png"> Supervisor</a>
-                            <a href="chat_admin.php" class="<?php echo ($current_page == 'chat_admin.php') ? 'active' : ''; ?>"><img src="images/admin.png"> Admin</a>
+                        <div class="dropdown-content" <?php echo (in_array($current_page, ['message_supervisor.php', 'message_coordinator.php', 'message_admin.php'])) ? 'style="display: block;"' : ''; ?>>
+                            <a href="message_supervisor.php" class="<?php echo ($current_page == 'message_supervisor.php') ? 'active' : ''; ?>"><img src="images/supervisor.png"> HTE</a>
+                            <a href="message_coordinator.php" class="<?php echo ($current_page == 'message_coordinator.php') ? 'active' : ''; ?>"><img src="images/faculty.png"> Adviser</a>
+                            <a href="message_admin.php" class="<?php echo ($current_page == 'message_admin.php') ? 'active' : ''; ?>"><img src="images/admin.png"> Admin</a>
                         </div>
                     </li>
                     <li class="dropdown">

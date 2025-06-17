@@ -1,19 +1,29 @@
 <?php
 include '../connection/config.php';
+
+//display all errors
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
 session_start();
 
-if (!isset($_SESSION['auth_user']) || !isset($_POST['receiver_id'])) {
-    echo '0';
-    exit();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['receiver_id'])) {
+    $sender_id = $_SESSION['auth_user']['student_uniqueID'];
+    $receiverId = $_POST['receiver_id'];
+    $status = 'Sent';
+    $stmt = $conn->prepare("SELECT COUNT(*) AS new_message_count FROM chat_system WHERE sender_id = ? AND receiver_id = ? AND status = ?");
+    $stmt->execute([$receiverId, $sender_id, $status]);
+    $results = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $newMessageCount = $results['new_message_count'];
+
+    // Close the PDO connection
+    $pdo = null;
+
+    // Return the new message count as a response to the Ajax request
+    echo $newMessageCount;
+
 }
-
-$senderId = $_SESSION['auth_user']['student_uniqueID'];
-$receiverId = $_POST['receiver_id'];
-$status = 'Sent'; // Assuming 'Sent' means unread
-
-$stmt = $conn->prepare("SELECT COUNT(*) AS new_message_count FROM chat_system WHERE sender_id = ? AND receiver_id = ? AND status = ?");
-$stmt->execute([$receiverId, $senderId, $status]);
-$count = $stmt->fetch(PDO::FETCH_ASSOC)['new_message_count'];
-
-echo $count;
 ?>

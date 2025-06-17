@@ -63,7 +63,7 @@
         <div class="nav-title-caption-container">
             <div class="nav-title">Polytechnic University of the Philippines - ITECH</div>
         </div>
-        <a href="logout.php" class="logout-button">Logout</a>
+        <a href="stud_logout.php" class="logout-button">Logout</a>
     </div>
 </nav>
 
@@ -73,7 +73,7 @@
 
     function startLogoutTimer() {
         logoutTimeout = setTimeout(function() {
-            fetch('/logout.php', {
+            fetch('/stud_logout.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify({ userId: userId })
