@@ -79,11 +79,10 @@ if (isset($_SESSION['auth_user']['coordinators_id']) && !empty($_SESSION['auth_u
                 <li><a href="coordinators_notification.php" class="<?php echo ($current_page == 'coordinators_notification.php') ? 'active' : ''; ?>"><img src="images/notification.png"> Notifications </a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle"><img src="images/message.png"> Messages</a>
-                    <div class="dropdown-content" <?php echo (in_array($current_page, ['stud_message.php', 'chat_supervisor.php', 'chat_faculty.php', 'chat_admin.php'])) ? 'style="display: block;"' : ''; ?>>
-                        <a href="stud_message.php" class="<?php echo ($current_page == 'stud_message.php') ? 'active' : ''; ?>"><img src="../student/images/student.png"> Student</a>
-                        <a href="chat_faculty.php" class="<?php echo ($current_page == 'chat_faculty.php') ? 'active' : ''; ?>"><img src="../student/images/faculty.png"> Faculty</a>
-                        <a href="chat_supervisor.php" class="<?php echo ($current_page == 'chat_supervisor.php') ? 'active' : ''; ?>"><img src="../student/images/supervisor.png"> Supervisor</a>
-                        <a href="chat_admin.php" class="<?php echo ($current_page == 'chat_admin.php') ? 'active' : ''; ?>"><img src="../student/images/admin.png"> Admin</a>
+                    <div class="dropdown-content" <?php echo (in_array($current_page, ['message_student.php', 'message_hte.php', 'message_admin.php'])) ? 'style="display: block;"' : ''; ?>>
+                        <a href="message_student.php" class="<?php echo ($current_page == 'message_student.php') ? 'active' : ''; ?>"><img src="../student/images/student.png"> Student</a>
+                        <a href="message_hte.php" class="<?php echo ($current_page == 'message_hte.php') ? 'active' : ''; ?>"><img src="../student/images/supervisor.png"> Supervisor</a>
+                        <a href="message_admin.php" class="<?php echo ($current_page == 'message_admin.php') ? 'active' : ''; ?>"><img src="../student/images/admin.png"> Admin</a>
                     </div>
                 </li>
                 <li class="dropdown">
