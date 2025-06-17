@@ -132,7 +132,7 @@ if (isset($_POST['updatePword'])) {
     <title>OJT Web Portal: Settings</title>
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
-    <link rel="shortcut icon" href="images/Picture1.png">
+    <link rel="shortcut icon" href="images/pupLogo.png">
     <!-- Retina iPad Touch Icon-->
     <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff">
     <!-- Retina iPhone Touch Icon-->

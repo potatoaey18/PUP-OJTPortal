@@ -172,7 +172,7 @@ if (!isset($_SESSION['auth_user']['supervisor_id']) || $_SESSION['auth_user']['s
     }
  
     </style>
-    <link rel="shortcut icon" href="images/Picture1.png">
+    <link rel="shortcut icon" href="images/pupLogo.png">
     <link href="css/lib/font-awesome.min.css" rel="stylesheet">
     <link href="css/lib/themify-icons.css" rel="stylesheet">
     <link href="css/lib/menubar/sidebar.css" rel="stylesheet">

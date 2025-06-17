@@ -24,7 +24,7 @@ if (!isset($_GET['student_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>OJT Web Portal: DTR</title>
-    <link rel="shortcut icon" href="images/Picture1.png">
+    <link rel="shortcut icon" href="images/pupLogo.png">
     <link href="css/lib/bootstrap.min.css" rel="stylesheet">
     <link href="css/lib/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">

@@ -19,7 +19,7 @@ if($_SESSION['auth_user']['supervisor_id']==0){
 
     <title>OJT Web Portal: Student Profile</title>
     <!-- ================= Favicon ================== -->
-    <link rel="shortcut icon" href="images/Picture1.png">
+    <link rel="shortcut icon" href="images/pupLogo.png">
     
     <!-- Common -->
     <link href="css/lib/font-awesome.min.css" rel="stylesheet">

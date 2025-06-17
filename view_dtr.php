@@ -31,7 +31,7 @@ if (!$record) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>OJT Web Portal: View DTR</title>
-    <link rel="shortcut icon" href="images/Picture1.png">
+    <link rel="shortcut icon" href="images/pupLogo.png">
     <link href="css/lib/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <style>

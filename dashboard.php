@@ -7,6 +7,7 @@ session_start();
 
 if ($_SESSION['auth_user']['supervisor_id'] == 0) {
     echo "<script>window.location.href='index.php'</script>";
+    exit;
 } else {
     $supervisorID = $_SESSION['auth_user']['supervisor_id'];
     $query = "SELECT first_name FROM supervisor WHERE id = :supervisor_id";
@@ -14,7 +15,7 @@ if ($_SESSION['auth_user']['supervisor_id'] == 0) {
     $stmt->bindParam(':supervisor_id', $supervisorID, PDO::PARAM_INT);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $first_name = isset($result['first_name']) ? $result['first_name'] : "Guest";
+    $first_name = isset($result['first_name']) && $result !== false ? $result['first_name'] : "Guest";
 
     // Fetch announcements for HTE or All
     $stmt = $conn->prepare("SELECT title, content, created_at FROM announcements WHERE portal IN ('HTE', 'All') ORDER BY created_at DESC LIMIT 3");
@@ -38,7 +39,7 @@ if ($_SESSION['auth_user']['supervisor_id'] == 0) {
     
     <title>OJT Web Portal: Dashboard</title>
     <!-- ================= Favicon ================== -->
-    <link rel="shortcut icon" href="images/Picture1.png">
+    <link rel="shortcut icon" href="images/pupLogo.png">
     
     <!-- Common -->
     <link href="css/lib/font-awesome.min.css" rel="stylesheet">
@@ -120,12 +121,15 @@ if ($_SESSION['auth_user']['supervisor_id'] == 0) {
                                         $stmt = $conn->prepare("SELECT company_name FROM supervisor WHERE id = ?");
                                         $stmt->execute([$supervisorID]);
                                         $supervisor = $stmt->fetch(PDO::FETCH_ASSOC);
-                                        $company = $supervisor['company_name'];
+                                        $company = ($supervisor !== false && isset($supervisor['company_name'])) ? $supervisor['company_name'] : '';
 
-                                        $stmt = $conn->prepare("SELECT COUNT(*) as total FROM students_data WHERE stud_hte = ? AND (ojt_status IS NULL OR ojt_status = '')");
-                                        $stmt->execute([$company]);
-                                        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                                        $totalApplicants = isset($result['total']) ? $result['total'] : '0';
+                                        $totalApplicants = 0;
+                                        if ($company) {
+                                            $stmt = $conn->prepare("SELECT COUNT(*) as total FROM students_data WHERE stud_hte = ? AND (ojt_status IS NULL OR ojt_status = '')");
+                                            $stmt->execute([$company]);
+                                            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                                            $totalApplicants = ($result !== false && isset($result['total'])) ? $result['total'] : 0;
+                                        }
                                         ?>
                                         <span class="stats-number" style="color: #000000; font-size: 32px; margin-left: 30px;"><?php echo $totalApplicants; ?></span>
                                     </div>
@@ -138,10 +142,13 @@ if ($_SESSION['auth_user']['supervisor_id'] == 0) {
                                     <div class="stats-info" style="margin-left: 20px; align-items: flex-start;">
                                         <span class="stats-label" style="color: #333; font-size: 20px;">Pending</span>
                                         <?php
-                                        $stmt = $conn->prepare("SELECT COUNT(*) as total FROM students_data WHERE stud_hte = ? AND ojt_status = 'Completed'");
-                                        $stmt->execute([$company]);
-                                        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                                        $totalPending = isset($result['total']) ? $result['total'] : '0';
+                                        $totalPending = 0;
+                                        if ($company) {
+                                            $stmt = $conn->prepare("SELECT COUNT(*) as total FROM students_data WHERE stud_hte = ? AND ojt_status = 'Completed'");
+                                            $stmt->execute([$company]);
+                                            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                                            $totalPending = ($result !== false && isset($result['total'])) ? $result['total'] : 0;
+                                        }
                                         ?>
                                         <span class="stats-number" style="color: #000000; font-size: 32px; margin-left: 30px;"><?php echo $totalPending; ?></span>
                                     </div>
@@ -154,11 +161,14 @@ if ($_SESSION['auth_user']['supervisor_id'] == 0) {
                                     <div class="stats-info" style="margin-left: 20px; align-items: flex-start;">
                                         <span class="stats-label" style="color: #333; font-size: 20px;">Trainees</span>
                                         <?php
-                                        $stmt = $conn->prepare("SELECT COUNT(*) as total FROM students_data WHERE stud_hte = ? AND ojt_status = 'Deployed'");
-                                        $stmt->execute([$company]);
-                                        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                                        $totalTrainees = isset($result['total']) ? $result['total'] : '0';
-                                        $_SESSION['supervisor_company'] = $company;
+                                        $totalTrainees = 0;
+                                        if ($company) {
+                                            $stmt = $conn->prepare("SELECT COUNT(*) as total FROM students_data WHERE stud_hte = ? AND ojt_status = 'Deployed'");
+                                            $stmt->execute([$company]);
+                                            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                                            $totalTrainees = ($result !== false && isset($result['total'])) ? $result['total'] : 0;
+                                            $_SESSION['supervisor_company'] = $company;
+                                        }
                                         ?>
                                         <span class="stats-number" style="color: #000000; font-size: 32px; margin-left: 30px;"><?php echo $totalTrainees; ?></span>
                                     </div>

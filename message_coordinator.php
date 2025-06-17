@@ -48,7 +48,7 @@ if (file_exists($pusherAutoloadPath)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>OJT Web Portal: Messages</title>
-    <link rel="shortcut icon" href="images/Picture1.png">
+    <link rel="shortcut icon" href="images/pupLogo.png">
     
     <!-- Pusher Configuration -->
     <script>
